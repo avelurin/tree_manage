@@ -1,3 +1,18 @@
+import sys
+import importlib.util
+
+def check_dependency(package_name):
+    """Check if a required package is installed."""
+    if importlib.util.find_spec(package_name) is None:
+        print(f"Error: Required package '{package_name}' is not installed.")
+        print(f"Please install it using: pip install {package_name}")
+        return False
+    return True
+
+# Check required dependencies
+if not check_dependency("dendropy"):
+    sys.exit(1)
+
 from dendropy import Tree
 
 # ==============================
